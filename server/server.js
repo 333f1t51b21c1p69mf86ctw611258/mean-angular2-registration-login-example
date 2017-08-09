@@ -1,4 +1,6 @@
-﻿require('rootpath')();
+﻿#!/usr/bin/env node
+
+require('rootpath')();
 var express = require('express');
 var app = express();
 var cors = require('cors');
@@ -25,6 +27,7 @@ app.use(expressJwt({
 
 // routes
 app.use('/users', require('./controllers/users.controller'));
+app.use('/devices', require('./controllers/devices.controller'));
 
 // start server
 var port = process.env.NODE_ENV === 'production' ? 80 : 4000;

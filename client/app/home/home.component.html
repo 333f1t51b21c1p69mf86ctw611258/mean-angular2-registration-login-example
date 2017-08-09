@@ -9,4 +9,12 @@
         </li>
     </ul>
     <p><a [routerLink]="['/login']">Logout</a></p>
+
+    <p><a href="#" (click)="testRabbitmq()">Load other user list</a></p>
+    <ul>
+        <li *ngFor="let user of users">
+            {{user.username}} ({{user.firstName}} {{user.lastName}})
+            - <a (click)="deleteUser(user._id)">Delete</a>
+        </li>
+    </ul>
 </div>
