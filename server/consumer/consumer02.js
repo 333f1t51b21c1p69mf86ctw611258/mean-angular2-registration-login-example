@@ -4,7 +4,7 @@ var amqp = require('amqplib/callback_api');
 
 amqp.connect('amqp://localhost', function (err, conn) {
     conn.createChannel(function (err, ch) {
-        var q = 'task_queue';
+        var q = 'X_DASAN_ADDONS_COMMAND';
 
         ch.assertQueue(q, { durable: true });
         ch.prefetch(1);
@@ -25,9 +25,18 @@ amqp.connect('amqp://localhost', function (err, conn) {
             }, 0 * 1000);
 
             conn.createChannel(function (err, ch) {
-                var q = 'RESPONSE_' + item.pid;
+                var q = 'X_DASAN_ADDONS_COMMAND_' + item.app;
                 var msg = {
-                    status: 'done'
+                    command: {
+                        id: 123,
+                        app: 'cli',
+                        deviceId: '00d0cb-GPON-DSNW651c10c8',
+                        args: {
+                            command: 'ls -l',
+                        }
+                    },
+                    date: '2017-08-04T07:29:27.474Z',
+                    status: 'sending'
                 };
 
                 ch.assertQueue(q, { durable: true });

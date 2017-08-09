@@ -2,7 +2,8 @@
 
 var amqp = require('amqplib/callback_api');
 
-const dest = 'amqp://test:test@10.72.0.163:5672';
+const dest = 'amqp://localhost';
+// const dest = 'amqp://test:test@10.72.0.163:5672';
 
 var requestLoop = setInterval(function () {
     // request({
@@ -26,7 +27,7 @@ var requestLoop = setInterval(function () {
             var msg = {
                 pid: process.pid,
                 id: 123,
-                app: 'cli',
+                app: 'CLI',
                 deviceId: '00d0cb-GPON-DSNW651c10c8',
                 args: {
                     command: 'ls -l',
@@ -52,7 +53,7 @@ var requestLoop = setInterval(function () {
 
 amqp.connect(dest, function (err, conn) {
     conn.createChannel(function (err, ch) {
-        var q = 'X_DASAN_ADDONS_COMMAND_cli';
+        var q = 'X_DASAN_ADDONS_COMMAND_CLI';
 
         ch.assertQueue(q, { durable: true });
         ch.prefetch(1);
@@ -60,9 +61,10 @@ amqp.connect(dest, function (err, conn) {
         ch.consume(q, function (msg) {
             // var secs = msg.content.toString().split('.').length - 1;
 
-            const item = JSON.parse(msg.content);
+            const result = JSON.parse(msg.content);
 
-            console.log(" [x] Received %s", item.status);
+            console.log(" [x] Received:");
+            console.log(result);
             
             setTimeout(function () {
                 // console.log(" [x] Done");
