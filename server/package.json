@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "amqplib": "^0.5.1",
+        "app-root-path": "^2.0.1",
         "bcryptjs": "^2.1.0",
         "body-parser": "^1.13.2",
         "cors": "^2.8.1",
@@ -16,6 +17,7 @@
         "jsonwebtoken": "^5.0.2",
         "lodash": "^3.10.0",
         "mongodb": "^2.1.16",
+        "mongoose": "^4.11.6",
         "mongoskin": "^2.1.0",
         "q": "^1.4.1",
         "request": "^2.58.0",
