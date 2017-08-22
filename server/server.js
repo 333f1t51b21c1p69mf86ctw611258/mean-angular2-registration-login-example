@@ -6,7 +6,15 @@ var app = express();
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
-var config = require('config.json');
+var _config = require('config.json');
+var _mongoose = require('mongoose');
+
+_mongoose.Promise = global.Promise;
+_mongoose.connect(_config.connectionString, {
+    keepAlive: true,
+    reconnectTries: 86,
+    useMongoClient: true
+});
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,7 +22,7 @@ app.use(bodyParser.json());
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
-    secret: config.secret,
+    secret: _config.secret,
     getToken: function (req) {
         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
             return req.headers.authorization.split(' ')[1];
@@ -23,11 +31,21 @@ app.use(expressJwt({
         }
         return null;
     }
-}).unless({ path: ['/users/authenticate', '/users/register', '/devices/runcommand', '/devices/getResultsById'] }));
+}).unless({
+    path: ['/api/users/authenticate',
+        '/api/users/register',
+        '/api/devices/runcommand',
+        '/api/devices/getResultsById',
+        '/api/devices/downloadBlacklist',
+        '/api/queueBlacklists/testRabbitmq',
+        '/api/queueBlacklists/add'
+    ]
+}));
 
 // routes
-app.use('/users', require('./controllers/users.controller'));
-app.use('/devices', require('./controllers/devices.controller'));
+app.use('/api/users', require('./controllers/users.controller'));
+app.use('/api/devices', require('./controllers/devices.controller'));
+app.use('/api/queueBlacklists', require('./controllers/queueBlacklist.controller'));
 
 // start server
 var port = process.env.NODE_ENV === 'production' ? 80 : 4000;

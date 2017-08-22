@@ -28,19 +28,6 @@ function getAllById(id) {
 function create(device) {
     var deferred = Q.defer();
 
-    // validation
-    // db.devices.findOne(
-    //     { id: device.id },
-    //     function (err, device) {
-    //         if (err) deferred.reject(err.name + ': ' + err.message);
-
-    //         if (device) {
-    //             deferred.reject('CommandId: "' + device.id + '" is already taken');
-    //         } else {
-    //             createDevice();
-    //         }
-    //     });
-
     createDevice();
 
     function createDevice() {

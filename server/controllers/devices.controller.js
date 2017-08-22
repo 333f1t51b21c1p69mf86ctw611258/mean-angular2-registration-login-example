@@ -1,3 +1,4 @@
+var appRoot = require('app-root-path');
 var config = require('config.json');
 var express = require('express');
 var router = express.Router();
@@ -14,7 +15,14 @@ router.get("/testRabbitmq", testRabbitmq);
 router.get("/getResultsById", getResultsById);
 router.get("/runcommand", runcommand);
 
+router.get("/downloadBlacklist", downloadBlacklist);
+
 module.exports = router;
+
+function downloadBlacklist(req, res) {
+    var file = appRoot + '/blacklist.txt';
+    res.download(file); // Set disposition and send it.
+}
 
 function testRabbitmq(req, res) {
     res.send({

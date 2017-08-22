@@ -1,0 +1,112 @@
+// Status: Begin
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'Begin',
+    date: '2017-08-04T07:29:27.474Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    }
+}
+
+// Status: Send (Before the time when ACS Server send message to ONT)
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'Send',
+    date: '2017-08-04T07:29:27.475Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    }
+}
+
+// Status: Offline Error (When ACS Server cannot communicate with ONT)
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'Error',
+    date: '2017-08-04T07:29:27.475Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    },
+    result: {
+        errorCode: 4001,
+        errorMessage: 'Device is offline'
+    }
+}
+
+// Status: Received (When ACS Server send message to ONT successfully)
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'Received',
+    date: '2017-08-04T07:29:27.475Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    },
+    result: {
+        resultFile: 'ftp://123.123.123.123/x_dasan_addons/blacklist/00d0cb-GPON-DSNW651c10c8_ls_20170801.txt'
+    }
+}
+
+// Status: Error (When device executes the job and it face the error)
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'Error',
+    date: '2017-08-04T07:29:27.475Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    },
+    result: {
+        errorCode: 4000,
+        errorMessage: 'Unknown Error',
+        resultFile: 'ftp://123.123.123.123/x_dasan_addons/blacklist/00d0cb-GPON-DSNW651c10c8_ls_20170802.txt'
+    }
+}
+
+// Status: Executed (When ONT execute the application request successfully)
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'Executed',
+    date: '2017-08-04T07:29:27.475Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    },
+    result: {
+        logFile: 'ftp://123.123.123.123/x_dasan_addons/blacklist/00d0cb-GPON-DSNW651c10c8_ls_20170803.txt'
+    }
+}
+
+// Status: End
+{
+    id : 123,
+    app: 'Blacklist',
+    deviceId: '00d0cb-GPON-DSNW651c10c8',
+    status: 'End',
+    date: '2017-08-04T07:29:27.474Z',
+    request: {
+        operation: 'Add',
+        file: 'http://10.72.125.168:4000/devices/downloadBlacklist',
+        md5: 'B708DF8FF043D06927AC1A91BA3825A5'
+    }
+}
