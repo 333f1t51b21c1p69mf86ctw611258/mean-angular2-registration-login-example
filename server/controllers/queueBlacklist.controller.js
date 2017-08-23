@@ -11,6 +11,7 @@ const RABBIT_DEST = 'amqp://test:test@10.72.0.163:5672';
 
 router.get("/testRabbitmq", testRabbitmq);
 router.post("/add", add);
+router.post("/uploadBlacklistFile", uploadBlacklistFile);
 
 module.exports = router;
 
@@ -20,12 +21,16 @@ function testRabbitmq(req, res) {
     });
 }
 
+function uploadBlacklistFile(req, res) {
+    console.log("TEST");
+}
+
 function add(req, res) {
     const json_queueBlacklist = {
         id: new Date().getTime(),
-        app: req.body.app,
+        app: 'Blacklist',
         deviceId: req.body.deviceId,
-        status: req.body.status,
+        status: 'Add',
         // date: '2017-08-04T07:29:27.474Z',
         request: {
             operation: req.body.operation,

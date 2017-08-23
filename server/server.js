@@ -38,7 +38,8 @@ app.use(expressJwt({
         '/api/devices/getResultsById',
         '/api/devices/downloadBlacklist',
         '/api/queueBlacklists/testRabbitmq',
-        '/api/queueBlacklists/add'
+        '/api/queueBlacklists/add',
+        '/api/queueBlacklists/uploadBlacklistFile'
     ]
 }));
 
