@@ -3,7 +3,7 @@ var _mongoose = require('mongoose');
 var Schema = _mongoose.Schema;
 
 var schema_queueBlacklist = new Schema({
-    id: { type: String, required: false, unique: true },
+    id: { type: String, required: false },
     app: { type: String, required: false },
     deviceId: { type: String, required: false },
     status: { type: String, required: false },

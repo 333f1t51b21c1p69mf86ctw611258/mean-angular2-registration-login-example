@@ -16,7 +16,7 @@ module.exports = service;
 function getAllById(id) {
     var deferred = Q.defer();
 
-    db.devices.find({ id: id }).toArray(function (err, devices) {
+    db.devices.find({ "id": id }).toArray(function (err, devices) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         deferred.resolve(devices);

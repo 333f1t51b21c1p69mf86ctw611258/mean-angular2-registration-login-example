@@ -54,7 +54,7 @@ const dest = 'amqp://test:test@10.72.0.163:5672';
 
 amqp.connect(dest, function (err, conn) {
     conn.createChannel(function (err, ch) {
-        var q = 'X_DASAN_ADDONS_COMMAND_CLI';
+        var q = 'CMD_OUTPUT_Blacklist';
 
         ch.assertQueue(q, { durable: true });
         ch.prefetch(1);
