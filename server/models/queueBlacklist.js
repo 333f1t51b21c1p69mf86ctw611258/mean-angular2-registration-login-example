@@ -6,17 +6,19 @@ var schema_queueBlacklist = new Schema({
     id: { type: String, required: false },
     app: { type: String, required: false },
     deviceId: { type: String, required: false },
-    status: { type: String, required: false },
+    type: { type: String, required: false },
     date: { type: Date },
     request: {
-        operation: String,
-        file: String,
-        md5: String
+        url: String,
+        md5: String,
+        username: String,
+        password: String,
+        fileSize: Number,
     },
     result: {
-        errorCode: Number,
-        errorMessage: String,
-        resultFile: String
+        code: Number,
+        message: String,
+        url: String
     }
 });
 schema_queueBlacklist.pre('save', function (next) {

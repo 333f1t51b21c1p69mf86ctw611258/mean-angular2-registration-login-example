@@ -90,16 +90,21 @@ function add(req, res) {
     const filename = req.body.filename;
     const md5 = req.body.md5;
 
+    //const url = encodeURIComponent(config.apiUrl + '/api/devices/downloadBlacklist?filename=' + filename);
+    const url = config.apiUrl + '/api/devices/downloadBlacklist?filename=' + filename;
+
     const json_queueBlacklist = {
         id: new Date().getTime(),
         app: 'Blacklist',
         deviceId: deviceId,
-        status: 'Begin',
+        type: 'UpdateConfig',
         // date: '2017-08-04T07:29:27.474Z',
         request: {
-            operation: 'Add',
-            file: config.apiUrl + '/api/devices/downloadBlacklist?filename=' + filename,
-            md5: md5
+            url: url,
+            md5: md5,
+            username: 'abc',
+            password: '123456',
+            fileSize: 12345
         }
     };
 

@@ -21,8 +21,6 @@ const QUEUE_NAME = 'CMD_OUTPUT_Blacklist';
 
 amqp.connect(RABBITMQ, function (err, conn) {
     conn.createChannel(function (err, ch) {
-
-
         ch.assertQueue(QUEUE_NAME, { durable: true });
         ch.prefetch(1);
         console.log(" [*] Waiting for messages in %s.", QUEUE_NAME);
