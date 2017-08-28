@@ -51,7 +51,7 @@ const paths = ['/api/users/authenticate',
     '/api/queueBlacklists/getAddResult'
 ];
 var reqFilter = function (req) {
-    let result = true;
+    let result = false;
 
     if (result === false) {
         if (paths.indexOf(req.originalUrl) > -1) {
