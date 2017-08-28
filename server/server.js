@@ -5,7 +5,6 @@ require('rootpath')();
 const express = require('express');
 const cors = require('cors');
 const expressJwt = require('express-jwt');
-const jsonConfig = require('config.json');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
@@ -23,6 +22,7 @@ const queueBlacklistService = require('./services/queueBlacklist.service');
 //
 // const child_process = require('child_process');
 
+const jsonConfig = require('config.json');
 const config = require('./config');
 const routes = require('./routes');
 
