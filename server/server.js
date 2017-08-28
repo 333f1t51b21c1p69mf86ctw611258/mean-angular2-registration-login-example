@@ -1,34 +1,45 @@
 ﻿#!/usr/bin/env node
 
 require('rootpath')();
-var express = require('express');
-var app = express();
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var expressJwt = require('express-jwt');
-var _config = require('config.json');
-var _mongoose = require('mongoose');
 
-//
-var queueBlacklistService = require('./services/queueBlacklist.service');
-var amqp = require('amqplib/callback_api');
+const express = require('express');
+const cors = require('cors');
+const expressJwt = require('express-jwt');
+const jsonConfig = require('config.json');
+const mongoose = require('mongoose');
+const helmet = require('helmet');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const bluebird = require('bluebird');
+const amqp = require('amqplib/callback_api');
+
 // const RABBITMQ = 'amqp://localhost';
 const RABBITMQ = 'amqp://test:test@10.72.0.163:5672';
 const QUEUE_NAME = 'CMD_OUTPUT_Blacklist';
 
 //
+const queueBlacklistService = require('./services/queueBlacklist.service');
+
+//
 // const child_process = require('child_process');
 
-_mongoose.Promise = global.Promise;
-_mongoose.connect(_config.connectionString, {
+const config = require('./config');
+const routes = require('./routes');
+
+const app = express();
+
+mongoose.Promise = bluebird; // global.Promise;
+mongoose.connect(jsonConfig.connectionString, {
     keepAlive: true,
     reconnectTries: 86,
     useMongoClient: true
 });
 
+app.use(helmet());
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
 const paths = ['/api/users/authenticate',
     '/api/users/register',
@@ -40,13 +51,15 @@ const paths = ['/api/users/authenticate',
     '/api/queueBlacklists/getAddResult'
 ];
 var reqFilter = function (req) {
-    let result = false;
+    let result = true;
 
-    if (paths.indexOf(req.originalUrl) > -1) {
-        result = true;
-    } else {
-        if (req.originalUrl.startsWith('/api/devices/downloadBlacklist?filename=')) {
+    if (result === false) {
+        if (paths.indexOf(req.originalUrl) > -1) {
             result = true;
+        } else {
+            if (req.originalUrl.startsWith('/api/devices/downloadBlacklist?filename=')) {
+                result = true;
+            }
         }
     }
 
@@ -55,7 +68,7 @@ var reqFilter = function (req) {
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
-    secret: _config.secret,
+    secret: jsonConfig.secret,
     getToken: function (req) {
         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
             return req.headers.authorization.split(' ')[1];
@@ -78,6 +91,7 @@ app.use(expressJwt({
 // }));
 
 // routes
+app.use('/rest', routes);
 app.use('/api/users', require('./controllers/users.controller'));
 app.use('/api/devices', require('./controllers/devices.controller'));
 app.use('/api/queueBlacklists', require('./controllers/queueBlacklist.controller'));
