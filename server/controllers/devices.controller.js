@@ -20,7 +20,7 @@ router.get("/downloadBlacklist", downloadBlacklist);
 module.exports = router;
 
 function downloadBlacklist(req, res) {
-    var file = appRoot + '/controllers/uploads/blacklist/' + req.query.filename;
+    var file = appRoot + '/uploads/blacklist/' + req.query.filename;
     res.download(file); // Set disposition and send it.
 }
 

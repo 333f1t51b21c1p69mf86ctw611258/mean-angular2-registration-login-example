@@ -6,6 +6,7 @@ var schema_queueBlacklist = new Schema({
     id: { type: String, required: false },
     app: { type: String, required: false },
     deviceId: { type: String, required: false },
+    redirectContent: { type: String, required: false },
     type: { type: String, required: false },
     date: { type: Date },
     request: {

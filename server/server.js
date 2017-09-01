@@ -48,10 +48,11 @@ const paths = ['/api/users/authenticate',
     '/api/queueBlacklists/testRabbitmq',
     '/api/queueBlacklists/add',
     '/api/queueBlacklists/uploadBlacklistFile',
-    '/api/queueBlacklists/getAddResult'
+    '/api/queueBlacklists/getAddResult',
+    '/rest/profile'
 ];
 var reqFilter = function (req) {
-    let result = false;
+    let result = true;
 
     if (result === false) {
         if (paths.indexOf(req.originalUrl) > -1) {
@@ -91,10 +92,11 @@ app.use(expressJwt({
 // }));
 
 // routes
-app.use('/rest', routes);
+app.use('/api', routes);
 app.use('/api/users', require('./controllers/users.controller'));
 app.use('/api/devices', require('./controllers/devices.controller'));
 app.use('/api/queueBlacklists', require('./controllers/queueBlacklist.controller'));
+// app.use('/api/profiles', require('./controllers/profile.controller'));
 
 // start server
 var port = process.env.NODE_ENV === 'production' ? 80 : 4000;
