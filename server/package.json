@@ -20,6 +20,7 @@
     "express": "^4.13.0",
     "express-jwt": "^3.0.1",
     "helmet": "^3.1.0",
+    "ip-address": "^5.8.8",
     "jsonwebtoken": "^5.0.2",
     "lodash": "^3.10.0",
     "md5-file": "^3.2.2",
