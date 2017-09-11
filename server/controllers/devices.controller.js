@@ -9,7 +9,7 @@ var deviceService = require('services/device.service');
 var amqp = require('amqplib/callback_api');
 
 // const dest = 'amqp://localhost';
-const dest = 'amqp://test:test@10.72.0.163:5672';
+const dest = config.rabbitmq; // 'amqp://test:test@10.72.0.163:5672';
 
 router.get("/testRabbitmq", testRabbitmq);
 router.get("/getResultsById", getResultsById);

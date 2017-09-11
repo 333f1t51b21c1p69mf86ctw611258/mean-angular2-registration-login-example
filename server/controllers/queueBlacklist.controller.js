@@ -16,7 +16,7 @@ const amqp = require('amqplib/callback_api');
 const fs = require('fs');
 
 // const dest = 'amqp://localhost';
-const RABBIT_DEST = 'amqp://test:test@10.72.0.163:5672';
+const RABBIT_DEST = config.rabbitmq; // 'amqp://test:test@10.72.0.163:5672';
 
 router.post("/add", add);
 router.post("/uploadBlacklistFile", fileService.multipart.any(), uploadBlacklistFile);
