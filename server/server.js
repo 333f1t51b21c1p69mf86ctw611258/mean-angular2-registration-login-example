@@ -11,10 +11,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const bluebird = require('bluebird');
 const amqp = require('amqplib/callback_api');
-const config = require('config.json');
+const json_config = require('config.json');
 
 // const RABBITMQ = 'amqp://localhost';
-const RABBITMQ = config.rabbitmq; // 'amqp://test:test@10.72.0.163:5672';
+const RABBITMQ = json_config.rabbitmq; // 'amqp://test:test@10.72.0.163:5672';
 const QUEUE_NAME = 'CMD_OUTPUT_Blacklist';
 
 //
