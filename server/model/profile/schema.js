@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const profileSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique : true },
   description: { type: String },
   blackIps: [{
     blackIp: String,
