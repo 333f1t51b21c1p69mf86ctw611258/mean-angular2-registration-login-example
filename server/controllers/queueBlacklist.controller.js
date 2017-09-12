@@ -97,8 +97,11 @@ function add(req, res) {
                         fileContent += dest + '\r\n';
                         callback();
                     } else {
-                        dns.lookup(dest, function (err, result) {
-                            fileContent += result + '\r\n';
+                        dns.lookup(dest, { all: true }, function (err, result) {
+                            result.forEach(function(ipItem) {
+                                fileContent += ipItem.address + '\r\n';    
+                            }, this);
+                            
                             callback();
                         });
                     }
