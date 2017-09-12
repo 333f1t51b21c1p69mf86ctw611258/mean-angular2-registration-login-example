@@ -43,7 +43,7 @@ function add(req, res) {
 
     // 1st para in async.each() is the array of items
     if (!selectedProfileIds.trim() || arrSelectedProfileIds.length <= 0) {
-        res.status(400).send("There isn't selected profiles.");
+        res.status(400).send("Please select the profiles.");
         return;
     }
 
