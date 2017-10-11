@@ -1,5 +1,5 @@
 ﻿{
-    "connectionString": "mongodb://localhost:27017/vhubdb",
+    "connectionString": "mongodb://192.168.56.102:27017/vhubdb",
     "apiUrl": "http://10.72.125.168:4000",
     "rabbitmq": "amqp://test:test@10.72.0.163:5672",
     "secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
